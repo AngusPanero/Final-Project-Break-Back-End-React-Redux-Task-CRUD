@@ -18,12 +18,12 @@ dotenv.config();
 const app = express();
 const PORT = 2105;
 
-// Habilitar CORS con orígenes específicos
+//  CORS HABILITADOS
 const corsOptions = {
-    origin: "http://localhost:5173",  // Cambia esto por la URL de tu frontend si es diferente
-    methods: ["GET", "POST", "PUT", "DELETE"],  // Métodos permitidos
-    allowedHeaders: ["Content-Type", "Authorization"],  // Encabezados permitidos
-    credentials: true  // Permitir cookies
+    origin: "http://localhost:5173", 
+    methods: ["GET", "POST", "PUT", "DELETE"],  // SOLO SE PERMITE ESTAS REQ
+    allowedHeaders: ["Content-Type", "Authorization"],  // CONTENIDO HABILITADO
+    credentials: true  // PERMITE COOKIE
 };
 
 app.use(cors(corsOptions));
