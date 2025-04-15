@@ -56,7 +56,7 @@ const controller = {
         } else {
             res.status(403).json({ success: false, message: "No autorizado" });
         }
-    },
+    }/* ,
 
     validateSession: async (req, res) =>{
         const token = req.cookies.TOKEN;
@@ -80,7 +80,7 @@ const controller = {
         console.error("Session validation failed:", error);
         res.status(401).json({ success: false, message: "Invalid token" });
     }
-    }
+    } */
 };
 
 module.exports = controller;

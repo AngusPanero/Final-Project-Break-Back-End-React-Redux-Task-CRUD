@@ -6,15 +6,22 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 3,      
-        maxlength: 30
+        maxlength: 50
     },
-    description: String,
+    description: {
+        type: String,
+        default: null, 
+        required: false
+    },
     completed: {
         type: Boolean,
-        default: false
+        default: false,
+        required: false
     },
     limitDate: {
         type: Date,
+        default: null,
+        required: false,
     },
     comments: {
         type: [
@@ -31,7 +38,8 @@ const taskSchema = new mongoose.Schema({
                 }
             }
         ],
-        default: []
+        default: [],
+        required: false,
     },
     email: {
         type: String,
@@ -39,6 +47,8 @@ const taskSchema = new mongoose.Schema({
         maxlength: 60,
         trim: true,
         lowercase: true,
+        default: null,
+        required: false,
     },
     user: {
         type: String,

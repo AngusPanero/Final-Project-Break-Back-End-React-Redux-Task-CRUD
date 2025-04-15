@@ -4,18 +4,22 @@ const mongoose = require("mongoose")
 const taskController = {
     create: async (req,res) => {
         try {
-            console.log(req.body);
+            console.log("REQ BODY", req.body);
 
-            const { title, completed, limitDate, comments, email } = req.body
+            const { title, description, completed, limitDate, comments, email } = req.body
 
             const task = await taskModel.create({
                 title,
+                description: description || null,
                 completed,
-                limitDate,
-                comments,
-                email,
-                user: req.user.uid // acá pongo esto para que sea mas seguro el campo con la especifidad del UID
-            })
+                limitDate: limitDate || null,
+                comments: comments || [],
+                email: email || null,
+                user: req.user.uid
+            });
+
+            console.log("NEW TASK", task);
+            
             
             if(!task){
                 console.error("ERROR", error);
