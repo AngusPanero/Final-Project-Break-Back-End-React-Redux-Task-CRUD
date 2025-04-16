@@ -49,12 +49,18 @@ const taskSchema = new mongoose.Schema({
         lowercase: true,
         default: null,
         required: false,
+        match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/, //aca me valido todo tipo de combinacion para el correo
     },
     user: {
         type: String,
         ref: "User",
         required: true
-    }
+    },
+    containerId: {
+        type: String,
+        required: true,
+        ref: "container" // acá lo estoy referenciando con el schema que tengo para los ontenedores
+    },
 }, { timestamps: true })
 
 const taskModel = mongoose.model("task", taskSchema)

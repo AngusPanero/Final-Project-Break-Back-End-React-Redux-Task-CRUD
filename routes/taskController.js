@@ -1,4 +1,5 @@
 const taskModel = require("../models/Tasks")
+const containerModel = require("../models/containers")
 const mongoose = require("mongoose")
 
 const taskController = {
@@ -6,7 +7,7 @@ const taskController = {
         try {
             console.log("REQ BODY", req.body);
 
-            const { title, description, completed, limitDate, comments, email } = req.body
+            const { title, description, completed, limitDate, comments, email, containerId } = req.body
 
             const task = await taskModel.create({
                 title,
@@ -15,7 +16,8 @@ const taskController = {
                 limitDate: limitDate || null,
                 comments: comments || [],
                 email: email || null,
-                user: req.user.uid
+                user: req.user.uid,
+                containerId: containerId
             });
 
             console.log("NEW TASK", task);
