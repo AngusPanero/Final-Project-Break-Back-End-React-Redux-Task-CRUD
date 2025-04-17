@@ -20,7 +20,7 @@ const containerController = {
         }
     },
     getContainers: async (req, res) => {
-        const userId = req.user.userId
+        const userId = req.user.uid
 
         try {
             const containers = await containerModel.find({ user: userId })
@@ -33,24 +33,28 @@ const containerController = {
         }
     },
     deleteContainers: async (req, res) => {
-        const containerId = req.params.id;
-        const userId = req.user.userId
-
+        const containerId = req.params.id; 
+        const userId = req.user.uid;
+    
         try {
-            const container = await containerModel.findById(containerId)
+            const container = await containerModel.findById(containerId);
+            console.log("Container Delete", containerId);
             
             if (!container) {
                 return res.status(404).json({ success: false, message: "Contenedor no encontrado" });
             }
-
-            if (container.user.toString() !== userId) { // aca compara que el usuario que se crea en el container sea el mismo del que solicita userID
+    
+            if (container.user.toString() !== userId) {
                 return res.status(403).json({ success: false, message: "No tienes permisos para eliminar este contenedor" });
             }
-
+    
             await taskModel.deleteMany({ containerId: containerId });
-            await container.findByIdAndDelete(containerId);
-
-        } catch (error){
+    
+            await containerModel.findByIdAndDelete(containerId);
+    
+            res.status(200).json({ success: true, message: "Contenedor y tareas eliminadas con éxito" });
+    
+        } catch (error) {
             console.log("Error al Borrar Contenedor", error);
             res.status(500).json({ success: false, message: "Error al eliminar el contenedor", error });
         }

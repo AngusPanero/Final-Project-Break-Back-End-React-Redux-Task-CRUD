@@ -15,6 +15,6 @@ routerTask.delete("/delete/:_id", authTaskUser, taskController.delete)
 //Rutas Containers
 routerTask.post("/createContainer", authTaskUser, containerController.createContainer)
 routerTask.get("/readContainers", authTaskUser, containerController.getContainers)
-routerTask.delete("/deleteContainer/:_id", authTaskUser, containerController.deleteContainers)
+routerTask.delete("/deleteContainer/:id", authTaskUser, containerController.deleteContainers)
 
 module.exports = routerTask

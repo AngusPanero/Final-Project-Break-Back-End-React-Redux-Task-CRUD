@@ -55,12 +55,12 @@ const taskSchema = new mongoose.Schema({
         type: String,
         ref: "User",
         required: true
-    },
+    }/* ,
     containerId: {
         type: String,
         required: true,
         ref: "container" // acá lo estoy referenciando con el schema que tengo para los ontenedores
-    },
+    }, */
 }, { timestamps: true })
 
 const taskModel = mongoose.model("task", taskSchema)
