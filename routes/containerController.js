@@ -10,7 +10,7 @@ const containerController = {
         
 
         try {
-            const newContainer = new containerModel({ name, user: userId })
+            const newContainer = new containerModel({ name, user: userId, containerId: Date.now().toString() })
             await newContainer.save()
             res.status(201).json({ success: true, container: newContainer });
 

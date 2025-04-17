@@ -56,31 +56,7 @@ const controller = {
         } else {
             res.status(403).json({ success: false, message: "No autorizado" });
         }
-    }/* ,
-
-    validateSession: async (req, res) =>{
-        const token = req.cookies.TOKEN;
-
-    if (!token) {
-        return res.status(401).json({ success: false, message: "No token provided" });
     }
-
-    try {
-        const decoded = await admin.auth().verifyIdToken(token);
-        const userRecord = await admin.auth().getUser(decoded.uid);
-
-        res.json({
-            success: true,
-            user: {
-                email: userRecord.email,
-                uid: userRecord.uid
-            }
-        });
-    } catch (error) {
-        console.error("Session validation failed:", error);
-        res.status(401).json({ success: false, message: "Invalid token" });
-    }
-    } */
 };
 
 module.exports = controller;

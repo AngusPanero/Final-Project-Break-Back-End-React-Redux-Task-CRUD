@@ -10,6 +10,10 @@ const containerSchema = new mongoose.Schema({
         type: String,
         ref: "User",
         required: true
+    },
+    containerId:{
+        type: String,
+        required: true
     }
 }, { timestamps: true })
 
