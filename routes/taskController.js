@@ -28,7 +28,7 @@ const taskController = {
             res.status(404).send({ message: "404 - ID no Encontrado" })
             }
             
-            res.status(201).json({ message: "Tarea creada correctamente", task });
+            res.status(201).json(task);
 
         } catch (error) {
             res.status(500).json({ message: "Error Interno" })
@@ -44,7 +44,7 @@ const taskController = {
             res.status(404).send({ message: "404 - ID no Encontrado" })
             }
             
-            res.status(200).json({ message: readTasks })
+            res.status(200).json(readTasks)
         } catch (error) {
             console.log("ERROR READ", error);
             res.status(500).json({ message: "Error Interno" })
@@ -62,7 +62,7 @@ const taskController = {
             }, { new: true })
 
             console.log("updateTask", updateTask);
-            res.status(200).json({ message: updateTask })
+            res.status(200).json(updateTask)
 
             if(!updateTask){
                 console.error("UPDATE - ERROR");
@@ -101,7 +101,7 @@ const taskController = {
         try {
             const deleteTask = await taskModel.findByIdAndDelete(req.params.id)
             console.log("deleteTask", deleteTask);
-            res.status(200).json({ message: deleteTask })
+            res.status(200).json({ message: "Delete Exitoso" })
 
             if(!deleteTask){
                 console.error("ERROR");
