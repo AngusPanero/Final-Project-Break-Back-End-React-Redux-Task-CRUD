@@ -11,6 +11,7 @@ routerTask.post("/create", authTaskUser, taskController.create)
 routerTask.get("/read", authTaskUser, taskController.read)
 routerTask.put("/update/:_id", authTaskUser, taskController.update)
 routerTask.delete("/delete/:_id", authTaskUser, taskController.delete)
+routerTask.put("updateCompletedTask/:_id", authTaskUser, taskController.updateTaskCompleted)
 
 //Rutas Containers
 routerTask.post("/createContainer", authTaskUser, containerController.createContainer)

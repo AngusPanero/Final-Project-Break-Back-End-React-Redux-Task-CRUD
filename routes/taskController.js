@@ -65,7 +65,7 @@ const taskController = {
             res.status(200).json({ message: updateTask })
 
             if(!updateTask){
-                console.error("ERROR", error);
+                console.error("UPDATE - ERROR");
             res.status(404).send({ message: "404 - ID no Encontrado" })
             }
 
@@ -74,14 +74,37 @@ const taskController = {
             res.status(500).json({ message: "Error Interno" })
         }
     }, 
+    updateTaskCompleted: async (req, res) => {
+        const taskId = req.params.id; 
+        const { completed } = req.body; 
+    
+        console.log("TASK ID BACK UPDATE", taskId);
+        console.log("COMPLETED UPDATE BACK", completed);
+        
+        try {
+            const task = await taskModel.findByIdAndUpdate(taskId, { completed: completed }, { new: true });
+            console.log("TASK UPDATE", task);
+            
+    
+            if (!task) {
+                return res.status(404).json({ message: "No Existe La Tarea" });
+            }
+            return res.status(200).json(task); 
+    
+        } catch (error) {
+            console.log("Error en la actualización de tarea:", error);
+            return res.status(500).json({ message: "Error al actualizar la tarea" });
+        }
+    },
+
     delete: async (req, res) => {
         try {
             const deleteTask = await taskModel.findByIdAndDelete(req.params.id)
-            console.log("deleteTask", updateTask);
+            console.log("deleteTask", deleteTask);
             res.status(200).json({ message: deleteTask })
 
             if(!deleteTask){
-                console.error("ERROR", error);
+                console.error("ERROR");
             res.status(404).send({ message: "404 - ID no Encontrado" })
             }
 

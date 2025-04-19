@@ -32,6 +32,7 @@ const containerController = {
             res.status(500).json({ success: false, message: "Error al obtener los contenedores", error });
         }
     },
+    
     deleteContainers: async (req, res) => {
         const containerId = req.params.id; 
         const userId = req.user.uid;
