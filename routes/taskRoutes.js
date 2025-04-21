@@ -9,7 +9,7 @@ require("dotenv").config()
 //Rutas CRUD
 routerTask.post("/create", authTaskUser, taskController.create)
 routerTask.get("/read", authTaskUser, taskController.read)
-routerTask.put("/update/:_id", authTaskUser, taskController.update)
+routerTask.put("/update/:id", authTaskUser, taskController.update)
 routerTask.delete("/delete/:id", authTaskUser, taskController.delete)
 routerTask.put("/updateCompletedTask/:id", authTaskUser, taskController.updateTaskCompleted)
 

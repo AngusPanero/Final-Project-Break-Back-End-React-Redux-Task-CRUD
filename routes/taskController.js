@@ -52,23 +52,24 @@ const taskController = {
     },
     update: async (req,res) => {
         try {
-            const updateTask = await taskModel.findByIdAndUpdate(req.params._id, {
+            const updateTask = await taskModel.findByIdAndUpdate(req.params.id, {
                 title: req.body.title,
                 description: req.body.description, 
                 limitDate: req.body.limitDate,
-                comments: req.body.comments, 
+                comments: req.body.comments,
+                completed: req.body.completed, 
                 email: req.body.email, 
-                user: req.body.user 
+                user: req.body.user,
+                containerId: req.body.containerId 
             }, { new: true })
 
             console.log("updateTask", updateTask);
-            res.status(200).json(updateTask)
 
             if(!updateTask){
                 console.error("UPDATE - ERROR");
             res.status(404).send({ message: "404 - ID no Encontrado" })
             }
-
+            res.status(200).json(updateTask)
         } catch (error) {
             console.log("Update Error", error);
             res.status(500).json({ message: "Error Interno" })
