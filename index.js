@@ -15,7 +15,10 @@ const PORT = 2105;
 
 //  CORS HABILITADOS
 const corsOptions = {
-    origin: "http://localhost:5173", 
+    origin: [
+        "http://localhost:5173", 
+        "https://final-project-break-front-end-react-qeqr.onrender.com"
+    ], 
     methods: ["GET", "POST", "PUT", "DELETE"],  // SOLO SE PERMITE ESTAS REQ
     allowedHeaders: ["Content-Type", "Authorization"],  // CONTENIDO HABILITADO
     credentials: true  // PERMITE COOKIE
